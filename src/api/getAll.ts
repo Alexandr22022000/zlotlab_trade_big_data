@@ -16,7 +16,7 @@ const method = async (req: Request, res: Response) => {
 
     const folderPath = path.join(__dirname, "../../uploads", req.params.hash);
 
-    if (!fs.existsSync(folderPath)) return res.status(404).send("Launch not found");
+    if (!fs.existsSync(folderPath)) return res.status(404).send("Hypothesis not found");
 
     const files = fs.readdirSync(folderPath);
     res.status(200).send(files);

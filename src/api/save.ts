@@ -12,11 +12,11 @@ const method = async (req: Request, res: Response) => {
     if (!/^.+?-.+?-([0-9]+?|(done))\.json$/.test(file.name))
         return res.status(400).send("Incorrect filename");
 
-    const launchKey = file.name.substring(0, file.name.lastIndexOf("-")),
-        folderPath = path.join(__dirname, "../../uploads", launchKey);
+    const hypothesisKey = file.name.substring(0, file.name.lastIndexOf("-")),
+        folderPath = path.join(__dirname, "../../uploads", hypothesisKey);
 
-    if (fs.existsSync(path.join(folderPath, launchKey + "-done.json")))
-        return res.status(400).send("Launch already finished");
+    if (fs.existsSync(path.join(folderPath, hypothesisKey + "-done.json")))
+        return res.status(400).send("Hypothesis already finished");
 
     await file.mv(path.join(folderPath, file.name));
     res.status(200).send({});
